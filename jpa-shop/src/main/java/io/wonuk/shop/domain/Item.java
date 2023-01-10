@@ -1,4 +1,4 @@
-package io.namjune.shop.domain;
+package io.wonuk.shop.domain;
 
 
 import lombok.Getter;
@@ -16,6 +16,19 @@ import javax.persistence.ManyToMany;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @Inheritance 조인 전략 설정하는 어노테이션
+ * 속성 strategy = InheritanceType.XXX
+ * JOINED : 조인 전략
+ * SINGLE_TABLE : 단일 테이블 전략
+ * TABLE_PER_CLASS : 구현 클래스마다 테이블 전략
+ *
+ * @DiscriminatorColumn
+ * 구분 컬럼명 default = DTYPE
+ *
+ * @DiscriminatorValue("A")
+ * 자식 테이블에 Value로 들어갈 값을 설정하는 어노테이션
+ */
 @Entity
 @Getter
 @Setter

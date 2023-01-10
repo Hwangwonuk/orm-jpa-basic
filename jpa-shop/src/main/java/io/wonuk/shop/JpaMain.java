@@ -1,6 +1,6 @@
-package io.namjune.shop;
+package io.wonuk.shop;
 
-import io.namjune.shop.domain.Book;
+import io.wonuk.shop.domain.Book;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

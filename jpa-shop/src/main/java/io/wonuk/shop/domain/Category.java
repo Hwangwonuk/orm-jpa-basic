@@ -1,4 +1,4 @@
-package io.namjune.shop.domain;
+package io.wonuk.shop.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
