@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * N:M 관계를 1:N, N:1로 풀어내기위해 엔티티로 승격한 테이블
+ */
 @Entity
 @Getter
 @Setter
