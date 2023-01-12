@@ -21,6 +21,6 @@ public class Member extends BaseEntity {
 
     private String name;
 
-    @Embedded
+    @Embedded // 값 타입을 사용하는 곳에 표시
     private Address address;
 }

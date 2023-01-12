@@ -6,7 +6,7 @@ import javax.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Embeddable
+@Embeddable // 값 타입을 정의하는 곳
 @Getter
 @NoArgsConstructor
 public class Address {
