@@ -23,6 +23,9 @@ public class Address {
     @Column(length = 5)
     private String zipcode;
 
+    /**
+     * 임베디드 사용시 이러한 비지니스 로직을 공통으로 사용할 수 있다.
+     */
     public String generateFullAddress() {
         return getCity() + ":" + getStreet() + ":" + getZipcode();
     }

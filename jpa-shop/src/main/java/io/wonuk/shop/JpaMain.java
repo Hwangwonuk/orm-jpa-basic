@@ -24,14 +24,11 @@ public class JpaMain {
 
         try {
 
-            Member member = new Member();
-            member.setName("member1");
-            member.setAddress(new Address("homeCity", "street", "10000"));
-            em.persist(member);
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("김영한");
 
-            em.flush();
-            em.clear();
-
+            em.persist(book);
 
             tx.commit();
         } catch (Exception e) {
