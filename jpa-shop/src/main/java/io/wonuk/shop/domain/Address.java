@@ -27,6 +27,9 @@ public class Address {
         return getCity() + ":" + getStreet() + ":" + getZipcode();
     }
 
+    /**
+     * 임베디드 타입의 경우에 비교할 일이 생기면 반드시 equals를 오버라이드 하여 사용하여야 한다.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {

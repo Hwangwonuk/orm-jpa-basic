@@ -23,25 +23,17 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Address address = new Address("city", "street", "10000");
 
-            Member member = new Member();
-            member.setName("member1");
-            member.setAddress(address);
-            em.persist(member);
+            int a = 10;
+            int b = 10;
 
-            Address newAddress = new Address(address.getCity(), address.getStreet(), address.getZipcode());
+            System.out.println("a == b : " + (a == b));
 
-            member.setAddress(newAddress);
+            Address address1 = new Address("city", "street", "10000");
+            Address address2 = new Address("city", "street", "10000");
 
-//            Address copyAddress = new Address(address.getCity(), address.getStreet(), address.getZipcode());
-//
-//            Member member2 = new Member();
-//            member2.setName("member2");
-//            member2.setAddress(copyAddress);
-//            em.persist(member2);
-
-//            member.getAddress().setCity("new city");
+            System.out.println("address1 == address2 : " + (a == b));
+            System.out.println("address1.equals(address2) : " + address1.equals(address2));
 
 
             tx.commit();
