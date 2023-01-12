@@ -3,12 +3,15 @@ package io.wonuk.shop.domain;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Embeddable // 값 타입을 정의하는 곳
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Address {
 
     @Column(length = 10)
