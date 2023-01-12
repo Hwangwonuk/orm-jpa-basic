@@ -3,6 +3,7 @@ package io.wonuk.shop;
 import io.wonuk.shop.domain.Book;
 
 import io.wonuk.shop.domain.Member;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -24,12 +25,18 @@ public class JpaMain {
             member1.setName("member1");
             em.persist(member1);
 
+            Member member2 = new Member();
+            member2.setName("member2");
+            em.persist(member2);
+
             em.flush();
             em.clear();
 
-            Member refMember = em.getReference(Member.class, member1.getId());
-            System.out.println("refMember = " + refMember.getClass()); // Proxy
-            Hibernate.initialize(refMember); // 강제 초기화
+            List<Member> members = em.createQuery("select m from Member m", Member.class).getResultList();
+            // FetchType이 EAGER인 경우 Team이 두개가 있다면 쿼리가 N+1개로 나간다.
+
+            // List<Member> members = em.createQuery("select m from Member m join fetch m.team", Member.class).getResultList();
+            // LAZY로 설정 후 fetch join을 사용하면 된다.
 
             tx.commit();
         } catch (Exception e) {
