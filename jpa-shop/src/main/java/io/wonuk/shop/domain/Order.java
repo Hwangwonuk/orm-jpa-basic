@@ -36,6 +36,10 @@ public class Order extends BaseEntity {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    /**
+     * CascadeType 설정으로 한번에 영속화한다. 라이프 사이클이 똑같을 때, 객체의 소유자가 하나만 있을 때
+     * @OneToOne @ManyToOne 만 가능하다.
+     */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;

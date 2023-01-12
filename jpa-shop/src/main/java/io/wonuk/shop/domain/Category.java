@@ -23,6 +23,7 @@ public class Category extends BaseEntity {
     private String name;
 
     // 상위 카테고리를 엔티티 셀프로 매핑할 수 있다.
+    // N:ONE 뒷부분에 ONE이 들어가는건 FetchType.EAGER가 default값이라 항상 LAZY로 설정해야한다.
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Category parent;
