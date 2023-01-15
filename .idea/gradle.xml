@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/ex1-hello-jpa" />
+            <option value="$PROJECT_DIR$/ex2-jpql" />
             <option value="$PROJECT_DIR$/jpa-shop" />
           </set>
         </option>
