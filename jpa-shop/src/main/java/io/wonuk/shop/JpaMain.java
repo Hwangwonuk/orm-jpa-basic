@@ -26,8 +26,16 @@ public class JpaMain {
         tx.begin();
 
         try {
-            em.createNativeQuery("select MEMBER_ID, city, street, zipcode, USERNAME from MEMBER")
-                .getResultList();
+
+            Member member = new Member();
+            member.setName("member1");
+            em.persist(member);
+
+            // flush -> commit, query
+
+            // 결과 0
+            // dbconn.executeQuery("select * from member");
+            // 이러한 경우 em.flush() 수동으로 flush
 
             tx.commit();
         } catch (Exception e) {
