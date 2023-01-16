@@ -15,6 +15,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+// Named 쿼리, 안에 작성된 쿼리가 잘못되었다면 실행될 때 에러가 납니다.
+// DAO에 따로 구현하는것이 일반적이다.
 @NamedQuery(
     name = "Member.findByUsername",
     query = "select m from Member m where m.name = :name"
