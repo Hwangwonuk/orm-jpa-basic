@@ -39,12 +39,15 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            String query = "select m.name, 'HELLO', TRUE from Member m where m.memberType = :userType and m.age between 0 and 10";
-            List<Member> result = em.createQuery(query, Member.class)
-                .setParameter("userType", MemberType.ADMIN)
-                .getResultList();
+//            String query = "select case when m.age <= 10 then '학생요금' else '일반요금' end from Member m";
+//            String query = "select coalesce(m.name, '이름 없는 회원') as userName from Member m";
+            String query = "select nullif(m.name, '관리자') from Member m";
 
-            System.out.println("result.size() = " + result.size());
+            List<String> resultList = em.createQuery(query, String.class).getResultList();
+
+            for (String s : resultList) {
+                System.out.println("s = " + s);
+            }
 
             tx.commit();
         } catch (Exception e) {
