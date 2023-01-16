@@ -23,29 +23,28 @@ public class JpaMain {
 
         try {
 
-            Team team = new Team();
-            team.setName("teamA");
-            em.persist(team);
+            Member member1 = new Member();
+            member1.setName("member1");
+            em.persist(member1);
 
-            Member member = new Member();
-            member.setName("member1");
-            member.setAge(10);
-            member.setMemberType(MemberType.ADMIN);
-
-            member.setTeam(team);
-
-            em.persist(member);
+            Member member2 = new Member();
+            member2.setName("member2");
+            em.persist(member2);
 
             em.flush();
             em.clear();
 
-//            String query = "select case when m.age <= 10 then '학생요금' else '일반요금' end from Member m";
-//            String query = "select coalesce(m.name, '이름 없는 회원') as userName from Member m";
-            String query = "select nullif(m.name, '관리자') from Member m";
+//            JPQL 기본 함수
+//            String query = "select 'a' || 'b' from Member m";
+//            String query = "select locate('de', 'abcdegf') from Member m";
+//            String query = "select index(t.members) from Team t";
 
-            List<String> resultList = em.createQuery(query, String.class).getResultList();
+//            사용자 정의 함수
+            String query = "select function('group_concat', m.name) from Member m";
+//            hibernate를 사용하면 select group_concat(m.name) from Member m 형태로 사용이 가능하다.
+            List<Integer> resultList = em.createQuery(query, Integer.class).getResultList();
 
-            for (String s : resultList) {
+            for (Integer s : resultList) {
                 System.out.println("s = " + s);
             }
 
