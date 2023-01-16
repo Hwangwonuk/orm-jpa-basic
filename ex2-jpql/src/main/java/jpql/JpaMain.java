@@ -50,38 +50,17 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-//            fetch join 대상에는 별칭을 사용하면 안된다.
-//            String query = "select t from Team t join fetch t.members as m";
+//            String query = "select m from Member m where m = :member";
+//            String query = "select m from Member m where m.id = :memberId";
+            String query = "select m from Member m where m.team = :team";
 
-//            둘 이상의 컬렉션은 페치 조인 할 수 없다.
-//            컬렉션을 페치 조인하면 페이징 API(setFirstResult, setMaxResults)를 사용할 수 없다.
-//            일대일, 다대일 같은 단일 값 연관 필드들은 페치 조인해도 페이징 가능
-//            하이버네이트는 경고 로그를 남기고 메모리에서 페이징 -> 매우 위험
-//            String query = "select t from Team t join fetch t.members m";
-
-//            @BatchSize(size = ?)를 조절, default_batch_fetch_size를 xml에 추가하여도 된다. 최적화 기능
-            String query = "select t from Team t";
-
-
-
-            List<Team> result = em.createQuery(query, Team.class)
-                .setFirstResult(0)
-                .setMaxResults(2)
+            List<Member> findMember = em.createQuery(query, Member.class)
+//                .setParameter("member", member1)
+//                .setParameter("memberId", member1.getId())
+                .setParameter("team", teamA)
                 .getResultList();
 
-            System.out.println("result = " + result.size());
-
-            for (Team team : result) {
-                System.out.println("team = " + team.getName() + ", members=" + team.getMembers().size());
-                for (Member member : team.getMembers()) {
-                    System.out.println("-> member = " + member);
-                }
-                // 회원1, 팀A(SQL)
-                // 회원2, 팀A(1차캐시)
-                // 회원3, 팀B(SQL)
-
-                // 회원 100명 -> N + 1
-            }
+            System.out.println("findMember = " + findMember);
 
             tx.commit();
         } catch (Exception e) {
